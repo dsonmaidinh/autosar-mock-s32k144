@@ -6,8 +6,11 @@ __pycache__/
 
 # S32 Design Studio / build output
 .metadata/
-**/Debug*/
-**/Release*/
+# S32DS build configurations (not Project_Settings/Debugger, which holds the launch files)
+**/Debug_FLASH/
+**/Release_FLASH/
+**/Debug_RAM/
+**/Release_RAM/
 *.o
 *.d
 *.elf
@@ -25,7 +28,11 @@ software/**/build/
 software/**/dist/
 
 # IDE / OS
-.vscode/
+# VS Code: keep the shared C/C++ configuration (software/tools/gen_vscode.py), ignore the rest
+**/.vscode/*
+!**/.vscode/c_cpp_properties.json
+!**/.vscode/settings.json
+!**/.vscode/extensions.json
 *.swp
 *~
 Thumbs.db
