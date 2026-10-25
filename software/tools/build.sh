@@ -49,25 +49,30 @@ echo "Building: $PROJECTS ($CONFIGS)"
 "$S32DSC" "${args[@]}" >"$LOG" 2>&1 &
 pid=$!
 
-# s32dsc may keep running after the last build: wait for the build results, then stop it.
+# Wait for s32dsc to exit by itself. Do not count "Build Finished|Failed" lines: when the
+# output folder already exists, -cleanBuild runs the clean twice and the second clean always
+# fails ("No rule to make target 'clean'") before the real build starts.
 elapsed=0
 while kill -0 "$pid" 2>/dev/null; do
-    done_count=$(grep -cE 'Build (Finished|Failed)' "$LOG" 2>/dev/null || true)
-    [ "${done_count:-0}" -ge "$expected" ] && break
     [ "$elapsed" -ge "$TIMEOUT_S" ] && { echo "ERROR: timeout after ${TIMEOUT_S}s" >&2; break; }
     sleep 2
     elapsed=$((elapsed + 2))
 done
-sleep 2
-kill "$pid" 2>/dev/null
-command -v taskkill >/dev/null 2>&1 && taskkill //F //IM s32dsc.exe >/dev/null 2>&1
+if kill -0 "$pid" 2>/dev/null; then
+    kill "$pid" 2>/dev/null
+    command -v taskkill >/dev/null 2>&1 && taskkill //F //IM s32dsc.exe >/dev/null 2>&1
+fi
 
 grep -E '(error|warning):' "$LOG" | sed -E "s#.*/firmware/#firmware/#" | sort | uniq
-grep -E 'Build (Finished|Failed)' "$LOG"
+
+# Only the results of "Build of configuration" count, not the "Clean-only build" ones.
+results=$(awk '/\*\*\*\* Build of configuration/ { b = 1 } /\*\*\*\* Clean-only build/ { b = 0 }
+               b && /Build (Finished|Failed)/ { print; b = 0 }' "$LOG")
+[ -n "$results" ] && echo "$results"
 
 rc=0
-grep -q 'Build Failed' "$LOG" && rc=1
-[ "$(grep -cE 'Build Finished' "$LOG")" -lt "$expected" ] && rc=1
+echo "$results" | grep -q 'Build Failed' && rc=1
+[ "$(echo "$results" | grep -c 'Build Finished')" -lt "$expected" ] && rc=1
 
 # Memory map checks (docs/Mock.docx 1.10)
 check_section() { # elf section expected_vma
