@@ -51,3 +51,6 @@ tmp/
 # EB Tresos
 *.tdb
 **/mcal_config/**/Build/
+
+# S32DS regenerates the compiler discovery cache (env-hash) on every open/build
+**/.settings/language.settings.xml
