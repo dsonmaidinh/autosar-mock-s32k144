@@ -34,3 +34,11 @@ Liên quan: `docs/Mock.docx` mục 1.10, 1.11; BL_SRS_001…004, BL_SRS_012; RSK
 - Stack: `0x2000_6000`, dài `0xFF0` (giảm 16 byte so với RTD).
 - `.boot_noinit` (NOLOAD) ở `0x2000_6FF0`, dài `0x10`. Biến đặt vào đây bằng `BOOT_SHARED_NOINIT` (`__attribute__((section(".boot_noinit")))`).
 - `Boot_RequestType` có compile-time check kích thước bằng đúng 16 byte (`Boot_Shared.h`).
+
+## 6. `-ffunction-sections` và section mồ côi của RTD
+
+- Cả hai project bật `-ffunction-sections` và `--gc-sections`. Khi đó NXP GCC đổi tên section của RTD theo từng hàm: `.mcal_text` → `.mcal_text.Mcu_Init`, `.mcal_const_cfg` → `.mcal_const_cfg.<var>`…
+- Linker gốc của RTD chỉ khớp tên chính xác (`*(.mcal_text)`), nên các section `.mcal_text.*` thành **section mồ côi**. ld tự chèn chúng sau section có cùng thuộc tính, ở đây là `int_flash_config` (16 byte ở `0x400`), gây lỗi `will not fit in region int_flash_config` (lần đầu tràn 3516 B).
+- **Vì sao develop vẫn build được:** khi chưa có ai gọi hàm MCAL (EcuM/BM còn thân trống), `--gc-sections` bỏ hết các section này, nên không có section mồ côi. Lỗi chỉ lộ ra khi có code gọi Mcu/Port/Dio thật (ví dụ `Test_LedBlink` trên `test/bootloader`, hoặc khi implement `EcuM_AL_DriverInitOne`). Linker cũ đã sai từ đầu, chỉ là chưa bị kích hoạt.
+- **Đã sửa** (commit `fix(linker): place RTD sections ...` trên `feature/bootloader` cho `bl.ld` và `feature/application` cho `app.ld`): thêm pattern `.*` cạnh tên gốc trong `bl.ld` và `app.ld`: `mcal_text`, `mcal_const*`, `mcal_data*`, `mcal_bss*`, `ramcode`, `acfls/acmem/acmcu_code_rom`. Không tắt `-ffunction-sections`, vì tắt thì gc không bỏ được code thừa nữa và binary to ra.
+- Cách kiểm tra: trong `.map` không được có section `.mcal_*` nào nằm ngoài output section đã khai báo, và `arm-none-eabi-nm` phải cho địa chỉ hàm MCAL trong `int_flash`, không nằm ở `0x400–0x40F`.
