@@ -1,0 +1,6 @@
+# Shell and Python scripts must keep LF so they run from Git Bash / WSL / CI
+*.sh    text eol=lf
+*.py    text eol=lf
+# VS Code configuration
+*.json  text eol=lf
+*.code-workspace text eol=lf
