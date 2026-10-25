@@ -41,7 +41,8 @@ Phạm vi: `firmware/{application,bootloader}/.cproject`, `.project`, `software/
 
 ## 6. Headless build (`software/tools/build.sh`)
 
-- `s32dsc.exe` **không tự thoát** sau khi build xong, nên script chờ đủ số dòng "Build Finished/Failed" rồi kill tiến trình.
+- `s32dsc.exe` tự thoát sau khi build xong. Script chờ tiến trình thoát, còn timeout (`TIMEOUT_S`) chỉ để kill khi bị treo. Không được đếm số dòng "Build Finished/Failed" (cách cũ): khi thư mục `<config>/` đã có từ lần build trước, `-cleanBuild` chạy clean **2 lần**, và lần clean thứ hai luôn báo `No rule to make target 'clean'` → "Build Failed". Đếm dòng thì script kill `s32dsc` ngay sau bước clean, lần chạy nào sau lần đầu cũng báo thiếu `.elf`.
+- Kết quả chỉ tính các dòng của "**** Build of configuration …", bỏ qua "Clean-only build". Lỗi clean thứ hai ở trên cũng xảy ra trong IDE khi bấm Clean 2 lần liên tiếp. Lỗi đó vô hại.
 - Dòng "Managed Build system manifest file error … ghs …" là nhiễu của plugin GHS không cài, bỏ qua.
 - Một lần build cả 4 cấu hình mất khoảng 4–5 phút, chủ yếu là thời gian S32DS khởi động và import project.
 - Cách dùng: `bash software/tools/build.sh [application|bootloader|all] [Debug_FLASH|Release_FLASH|all]`. Script kiểm tra luôn memory map (xem `startup_linker_memory.md`).
