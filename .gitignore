@@ -1,0 +1,39 @@
+# Python
+.venv/
+**/.venv/
+__pycache__/
+*.pyc
+
+# S32 Design Studio / build output
+.metadata/
+**/Debug*/
+**/Release*/
+*.o
+*.d
+*.elf
+*.srec
+*.hex
+*.bin
+*.map
+*.lst
+*.args
+
+# Packaged tools
+software/**/execution/*.exe
+software/**/execution/*.spec
+software/**/build/
+software/**/dist/
+
+# IDE / OS
+.vscode/
+*.swp
+*~
+Thumbs.db
+desktop.ini
+
+# Office lock files
+~$*
+
+# Logs / temp
+*.log
+tmp/
