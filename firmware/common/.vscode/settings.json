@@ -1,0 +1,33 @@
+{
+    "files.associations": {
+        "*.h": "c",
+        "*.xdm": "xml",
+        "*.epc": "xml",
+        "*.cproject": "xml",
+        ".cproject": "xml",
+        ".project": "xml",
+        "*.launch": "xml",
+        "*.args": "plaintext"
+    },
+    "files.exclude": {
+        "**/Debug_FLASH": true,
+        "**/Release_FLASH": true,
+        "**/.metadata": true
+    },
+    "search.exclude": {
+        "**/Debug_FLASH": true,
+        "**/Release_FLASH": true,
+        "**/.metadata": true,
+        "**/reference/**": true
+    },
+    "C_Cpp.files.exclude": {
+        "**/Debug_FLASH": true,
+        "**/Release_FLASH": true,
+        "**/.metadata": true,
+        "**/reference/**": true,
+        "**/mcal/Spi/**": true
+    },
+    "C_Cpp.default.cStandard": "c99",
+    "C_Cpp.errorSquiggles": "enabled",
+    "files.eol": "\n"
+}

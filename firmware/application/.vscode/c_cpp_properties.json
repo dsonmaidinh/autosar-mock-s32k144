@@ -1,0 +1,94 @@
+{
+    "env": {
+        "S32DS_ROOT": "C:/NXP/S32DS.3.6.10"
+    },
+    "configurations": [
+        {
+            "name": "Application",
+            "includePath": [
+                "${workspaceFolder}/cfg",
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/../common/mcal/Base/include",
+                "${workspaceFolder}/../common/mcal/Base/header",
+                "${workspaceFolder}/../common/mcal/Platform/include",
+                "${workspaceFolder}/../common/mcal/Platform/startup/include",
+                "${workspaceFolder}/../common/mcal/Mcu/include",
+                "${workspaceFolder}/../common/mcal/Port/include",
+                "${workspaceFolder}/../common/mcal/Dio/include",
+                "${workspaceFolder}/../common/mcal/Gpt/include",
+                "${workspaceFolder}/../common/mcal/Can_43_FLEXCAN/include",
+                "${workspaceFolder}/../common/mcal/Rte/include",
+                "${workspaceFolder}/../common/mcal_cfg/include",
+                "${workspaceFolder}/../common/bsw/Det/include",
+                "${workspaceFolder}/../common/bsw/CanIf/include",
+                "${workspaceFolder}/../common/bsw/PduR/include",
+                "${workspaceFolder}/../common/bsw/CanTp/include",
+                "${workspaceFolder}/../common/bsw/CanSM/include",
+                "${workspaceFolder}/../common/bsw/ComM/include",
+                "${workspaceFolder}/../common/bsw/Dem/include",
+                "${workspaceFolder}/../common/bsw/Dcm/include",
+                "${workspaceFolder}/../common/ecum/include",
+                "${workspaceFolder}/../common/stubs",
+                "${workspaceFolder}/../common/boot_shared",
+                "${workspaceFolder}/src/app",
+                "${workspaceFolder}/src/cdd/CDD_CanTest"
+            ],
+            "defines": [
+                "CPU_S32K144HFT0VLLT",
+                "S32K1XX",
+                "S32K144",
+                "GCC",
+                "USE_SW_VECTOR_MODE",
+                "EU_DISABLE_ANSILIB_CALLS",
+                "I_CACHE_ENABLE",
+                "ENABLE_FPU",
+                "DET_ENABLED"
+            ],
+            "compilerPath": "${S32DS_ROOT}/S32DS/build_tools/gcc_v11.4/gcc-11.4-arm32-eabi/bin/arm-none-eabi-gcc.exe",
+            "compilerArgs": [
+                "-mcpu=cortex-m4",
+                "-mthumb",
+                "-mfloat-abi=hard",
+                "-mfpu=fpv4-sp-d16",
+                "-std=c99"
+            ],
+            "cStandard": "c99",
+            "intelliSenseMode": "gcc-arm",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/src",
+                    "${workspaceFolder}/cfg",
+                    "${workspaceFolder}/../common",
+                    "${workspaceFolder}/cfg",
+                    "${workspaceFolder}/src",
+                    "${workspaceFolder}/../common/mcal/Base/include",
+                    "${workspaceFolder}/../common/mcal/Base/header",
+                    "${workspaceFolder}/../common/mcal/Platform/include",
+                    "${workspaceFolder}/../common/mcal/Platform/startup/include",
+                    "${workspaceFolder}/../common/mcal/Mcu/include",
+                    "${workspaceFolder}/../common/mcal/Port/include",
+                    "${workspaceFolder}/../common/mcal/Dio/include",
+                    "${workspaceFolder}/../common/mcal/Gpt/include",
+                    "${workspaceFolder}/../common/mcal/Can_43_FLEXCAN/include",
+                    "${workspaceFolder}/../common/mcal/Rte/include",
+                    "${workspaceFolder}/../common/mcal_cfg/include",
+                    "${workspaceFolder}/../common/bsw/Det/include",
+                    "${workspaceFolder}/../common/bsw/CanIf/include",
+                    "${workspaceFolder}/../common/bsw/PduR/include",
+                    "${workspaceFolder}/../common/bsw/CanTp/include",
+                    "${workspaceFolder}/../common/bsw/CanSM/include",
+                    "${workspaceFolder}/../common/bsw/ComM/include",
+                    "${workspaceFolder}/../common/bsw/Dem/include",
+                    "${workspaceFolder}/../common/bsw/Dcm/include",
+                    "${workspaceFolder}/../common/ecum/include",
+                    "${workspaceFolder}/../common/stubs",
+                    "${workspaceFolder}/../common/boot_shared",
+                    "${workspaceFolder}/src/app",
+                    "${workspaceFolder}/src/cdd/CDD_CanTest"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        }
+    ],
+    "version": 4
+}
