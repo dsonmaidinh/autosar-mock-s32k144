@@ -1,0 +1,18 @@
+[submodule "reference/github/AUTOSAR-MCAL-Embedded-Upskilling-Bootcamp"]
+	path = reference/github/AUTOSAR-MCAL-Embedded-Upskilling-Bootcamp
+	url = https://github.com/renatosoriano/AUTOSAR-MCAL-Embedded-Upskilling-Bootcamp.git
+[submodule "reference/github/S32K144-Automotive-ECU"]
+	path = reference/github/S32K144-Automotive-ECU
+	url = https://github.com/mianlongxu-cell/S32K144-Automotive-ECU.git
+[submodule "reference/github/UDS_S32K144_APP"]
+	path = reference/github/UDS_S32K144_APP
+	url = https://github.com/SummerFalls/UDS_S32K144_APP.git
+[submodule "reference/github/UDS_S32K144_Bootloader"]
+	path = reference/github/UDS_S32K144_Bootloader
+	url = https://github.com/SummerFalls/UDS_S32K144_Bootloader.git
+[submodule "reference/github/UDS_S32K144_FlashDriver"]
+	path = reference/github/UDS_S32K144_FlashDriver
+	url = https://github.com/SummerFalls/UDS_S32K144_FlashDriver.git
+[submodule "reference/github/classic-platform"]
+	path = reference/github/classic-platform
+	url = https://github.com/openAUTOSAR/classic-platform.git
