@@ -23,7 +23,6 @@ extern "C" {
 #include "Std_Types.h"
 #include "ComStack_Types.h"
 #include "ComM_Types.h"
-#include "CanSM_Cfg.h"
 
 /*==================================================================================================
 *                               SOURCE FILE VERSION INFORMATION
@@ -75,6 +74,9 @@ typedef struct
 {
     uint8 CanSM_Dummy;  /* TODO(CANSM_SRS_001/005): add network and bus-off configuration (X-01) */
 } CanSM_ConfigType;
+
+/* Included after CanSM_ConfigType so that CanSM_Cfg.h can declare the configuration set. */
+#include "CanSM_Cfg.h"
 
 /*==================================================================================================
 *                                    FUNCTION PROTOTYPES

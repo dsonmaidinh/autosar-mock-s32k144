@@ -18,7 +18,6 @@ extern "C" {
 *                                        INCLUDE FILES
 ==================================================================================================*/
 #include "Std_Types.h"
-#include "Det_Cfg.h"
 
 /*==================================================================================================
 *                               SOURCE FILE VERSION INFORMATION
@@ -58,6 +57,9 @@ typedef struct
 {
     uint8 Det_Dummy;    /* TODO: replace by project configuration (error hooks, log size) */
 } Det_ConfigType;
+
+/* Included after Det_ConfigType so that Det_Cfg.h can declare the configuration set. */
+#include "Det_Cfg.h"
 
 /*==================================================================================================
 *                                    FUNCTION PROTOTYPES
