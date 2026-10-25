@@ -37,7 +37,7 @@ Phạm vi: `firmware/{application,bootloader}/.cproject`, `.project`, `software/
 
 - Đóng S32DS (hoặc close project) trước khi sửa `.cproject` bằng tay hay bằng script, nếu không IDE sẽ ghi đè.
 - Sửa xong `.cproject` thì chạy `python software/tools/gen_vscode.py` để VSCode khớp lại (`docs/notes/vscode_intellisense.md`).
-- `.settings/language.settings.xml` bị S32DS tự ghi lại `env-hash` mỗi lần build. Thay đổi này chỉ là hash môi trường: không commit, dùng `git restore` để bỏ.
+- `.settings/language.settings.xml` do S32DS tự sinh (cache `env-hash`), đã ignore và không còn track trong git.
 
 ## 6. Headless build (`software/tools/build.sh`)
 
