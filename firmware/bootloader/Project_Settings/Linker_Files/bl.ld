@@ -81,12 +81,15 @@ SECTIONS
         *(.text*)
         . = ALIGN(4);
         *(.mcal_text)
+        *(.mcal_text.*)
         . = ALIGN(4);
         acfls_code_rom_start = .;
         . = ALIGN(0x4);
         *(.acfls_code_rom)
+        *(.acfls_code_rom.*)
         . = ALIGN(4);
         *(.acmem_43_INFLS_code_rom)
+        *(.acmem_43_INFLS_code_rom.*)
         . = ALIGN(4);
         acfls_code_rom_end = .;
         KEEP(*(.init))
@@ -98,10 +101,13 @@ SECTIONS
         *(.rodata*)
         . = ALIGN(4);
         *(.mcal_const_cfg)
+        *(.mcal_const_cfg.*)
         . = ALIGN(4);
         *(.mcal_const)
+        *(.mcal_const.*)
         . = ALIGN(4);
         *(.mcal_const_no_cacheable)
+        *(.mcal_const_no_cacheable.*)
         . = ALIGN(4);
         __init_table = .;
         KEEP(*(.init_table))
@@ -111,6 +117,7 @@ SECTIONS
 
         . = ALIGN(4);
         *(.acmcu_code_rom)
+        *(.acmcu_code_rom.*)
         . = ALIGN(4);
         _etext = .;
         __DATA_ROM = .;
@@ -145,13 +152,16 @@ SECTIONS
         . = ALIGN(4);
         __data_ram_start = .;
         *(.ramcode)
+        *(.ramcode.*)
         . = ALIGN(4);
         *(.data)
         *(.data*)
         . = ALIGN(4);
         *(.mcal_data)
+        *(.mcal_data.*)
         . = ALIGN(4);
         *(.mcal_data_no_cacheable)
+        *(.mcal_data_no_cacheable.*)
         . = ALIGN(4);
         __data_ram_end = .;
     } > int_sram
@@ -166,9 +176,11 @@ SECTIONS
         *(.bss*)
         . = ALIGN(16);
         *(.mcal_bss)
+        *(.mcal_bss.*)
         . = ALIGN(16);
         __non_cacheable_bss_start = .;
         *(.mcal_bss_no_cacheable)
+        *(.mcal_bss_no_cacheable.*)
         . = ALIGN(4);
         __non_cacheable_bss_end = .;
         __sram_bss_end = .;
